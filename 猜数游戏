@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+int main()
+{
+	int magic, guess;
+	char end;
+	do
+	{
+		int counter = 0;
+		int ret;
+		unsigned seed;
+		printf("请输入一个种子:");
+		scanf_s("%u", &seed);
+		srand(seed);
+		magic = rand() % 100 + 1;
+		do
+		{
+			printf("请猜一个1到100内的数:\n");
+			ret = scanf_s("%d", &guess);
+			while (ret != 1)
+			{
+				while (getchar() != '\n');
+				printf("请猜一个数而不是别的\n");
+				ret = scanf_s("%d", &guess);
+			}
+			if (guess > magic)
+			{
+				printf("你猜的数字大了喵\n");
+			}
+			else if (guess < magic) {
+				printf("你猜的数字小了喵\n");
+			}
+			else {
+				printf("猜对了喵\n");
+			};
+			counter++;
+		} while (guess != magic && counter < 10);
+		if (counter == 10)
+		{
+			printf("十次都还没猜到吗杂~鱼杂~鱼\n");
+		}
+		else printf("猜的次数为：%d\n", counter);
+		printf("还要再来一局吗？输入Y/N或者y/n\n;");
+		scanf_s(" %c", &end);
+	} while (end == 'Y' || end == 'y');
+	return 0;
+}
